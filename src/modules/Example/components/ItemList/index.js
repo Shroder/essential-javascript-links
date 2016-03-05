@@ -73,15 +73,14 @@ class Home extends React.Component {
         </div>
 
         <div className="col-md-12">
-          <ul className="list-unstyled border-separator">
           {this.props.displayedItems.map(function (item, index) {
-            return <li key={item.id}>
-              <h3 style={{textAlign: 'center'}}>{item.title}</h3>
-              {item.href}<br />
-              <div>{displayDescription(item.short_description)}</div>
-            </li>
+            return <article key={item.id} className="List-Item">
+              <header className="List-Item-Header">
+                <cite className="List-Item-Title"><a href="{item.href}">{item.title}</a></cite>
+              </header>
+              <p className="List-Item-Description List-Item-Description--Short">{item.short_description}</p>
+            </article>
           })}
-          </ul>
         </div>
         <span>&copy; '15 Eric Elliott &amp; friends</span>
       </div>
