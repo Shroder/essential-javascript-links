@@ -57,12 +57,16 @@ class Home extends React.Component {
     return (
       <div>
         <div className="col-md-12">
-          <h1 style={{textAlign: "center"}}>Essential JavaScript Links</h1>
-          <span>A curated list by Eric Elliott and friends.</span>
-          <ul>
-            <li><a href="index.html">The Links</a></li>
-            <li><a href="about.html">About</a></li>
-          </ul>
+          <header id="masthead" role="banner" className="MastHead">
+            <hgroup className="Masthead-Logo">
+              <h1 style={{textAlign: "center"}}>Essential JavaScript Links</h1>
+              <span className="Masthead-Logo-Subtitle">A curated list by Eric Elliott and friends.</span>
+            </hgroup>
+            <nav className="Masthead-Menu">
+              <span className="Masthead-Menu-Item"><a href="#index">The Links</a></span>&nbsp;
+              <span className="Masthead-Menu-Item"><a href="#about">About</a></span>
+            </nav>
+          </header>
         </div>
         <div className="col-md-12" style={{textAlign: "center"}}>
           <select onChange={(e) => signals.categoryChanged({ category: e.target.value})}>
@@ -73,6 +77,7 @@ class Home extends React.Component {
         </div>
 
         <div className="col-md-12">
+          <h2 className="List-Header">Required Reading (Online resources)</h2>
           {this.props.displayedItems.map(function (item, index) {
             return <article key={item.id} className="List-Item">
               <header className="List-Item-Header">
