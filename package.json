@@ -1,6 +1,6 @@
 {
   "name": "essential-javascript-links",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Essential JavaScript Links website.",
   "main": "server.js",
   "scripts": {
