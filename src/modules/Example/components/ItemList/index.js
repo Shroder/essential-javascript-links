@@ -1,14 +1,16 @@
 import React, { PropTypes } from 'react';
 import { Decorator as Cerebral, Link } from 'cerebral-view-react';
 import displayedItems from '../../modules/List/computed/visibleItems.js';
+import categories from '../../modules/List/computed/categories.js';
 import HtmlToReact from 'html-to-react';
 
 @Cerebral({
-  title: ['example', 'title'],
-  color: ['example', 'color'],
-  items: ['example', 'items'],
-  selectedCategory: ['example', 'selectedCategory'],
-  displayedItems: displayedItems
+  title: ['list', 'title'],
+  color: ['list', 'color'],
+  items: ['list', 'items'],
+  selectedCategory: ['list', 'selectedCategory'],
+  displayedItems: displayedItems,
+  categories: categories
 })
 class Home extends React.Component {
 
@@ -18,7 +20,7 @@ class Home extends React.Component {
   };
 
   render() {
-    const signals = this.props.signals.example;
+    const signals = this.props.signals.list;
 
     function generateImage(image) {
       if(image) {
@@ -70,9 +72,10 @@ class Home extends React.Component {
         </div>
         <div className="col-md-12" style={{textAlign: "center"}}>
           <select onChange={(e) => signals.categoryChanged({ category: e.target.value})}>
-            <option>Website</option>
-            <option>Marketing</option>
-            <option>Hobby</option>
+            <option value="">All</option>
+            {this.props.categories.map(function (item, index) {
+              return <option value={item}>{item}</option>
+            })}
           </select>
         </div>
 

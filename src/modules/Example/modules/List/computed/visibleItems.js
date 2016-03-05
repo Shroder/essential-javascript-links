@@ -1,6 +1,7 @@
 export default function (get) {
-	const items = get(['example', 'items']);
-	const filter = get(['example', 'selectedCategory']);
+	const items = get(['list', 'items']);
+	const filter = get(['list', 'selectedCategory']);
+	console.debug(filter);
 
 	if(!items) {
 		return [];
