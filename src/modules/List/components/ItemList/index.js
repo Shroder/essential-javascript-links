@@ -22,40 +22,6 @@ class Home extends React.Component {
   render() {
     const signals = this.props.signals.list;
 
-    function generateImage(image) {
-      if(image) {
-        return <div style={{textAlign: 'center'}}><img src={image} width="640" /></div>;
-      }
-    }
-
-    function displayEndYear(endYear) {
-      if(!endYear) {
-        return 'Present';
-      }
-      return endYear;
-    }
-
-    function displayLink(link) {
-      if(link) {
-        return <div style={{textAlign: 'center'}}><a href={link} target="_blank">Link</a></div>
-      }
-      return;
-    }
-
-    function displayDescription(description) {
-      var parser = new HtmlToReact.Parser(React);
-      var component = parser.parse("<div>" + description + "</div>")
-      return component;
-    }
-
-    function displayCode(snippet) {
-      if(snippet && snippet.code) {
-        var langClass = snippet.lang.toLowerCase();
-        return <pre className="code-snippet"><code className={langClass}>{snippet.code}</code></pre>          
-      }
-      return;
-    }
-
     return (
       <div>
         <div className="col-md-12">
@@ -84,7 +50,7 @@ class Home extends React.Component {
           {this.props.displayedItems.map(function (item, index) {
             return <article key={item.id} className="List-Item">
               <header className="List-Item-Header">
-                <cite className="List-Item-Title"><a href="{item.href}">{item.title}</a></cite>
+                <cite className="List-Item-Title"><a href={item.href}>{item.title}</a></cite>
               </header>
               <p className="List-Item-Description List-Item-Description--Short">{item.short_description}</p>
             </article>
