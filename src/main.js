@@ -11,10 +11,7 @@ import Http from 'cerebral-module-http';
 const controller = Controller(Model({}));
 
 controller.addModules({
-  list: List(),
-  http: Http({
-  	baseUrl: '/data'
-  })
+  list: List()
 });
 
 ReactDOM.render(<Container controller={controller}><ItemList /></Container>, document.getElementById('root'));

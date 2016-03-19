@@ -1,7 +1,6 @@
 export default function (get) {
 	const items = get(['list', 'items']);
 	const filter = get(['list', 'selectedCategory']);
-	console.debug(filter);
 
 	if(!items) {
 		return [];

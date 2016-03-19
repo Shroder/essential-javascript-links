@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import { Decorator as Cerebral, Link } from 'cerebral-view-react';
 import displayedItems from '../../modules/List/computed/visibleItems.js';
+import ListItem from '../ListItem';
+import Filter from '../Filter';
 import categories from '../../modules/List/computed/categories.js';
 import HtmlToReact from 'html-to-react';
 
 @Cerebral({
-  title: ['list', 'title'],
-  color: ['list', 'color'],
   items: ['list', 'items'],
   selectedCategory: ['list', 'selectedCategory'],
   displayedItems: displayedItems,
@@ -37,23 +37,13 @@ class Home extends React.Component {
           </header>
         </div>
         <div className="col-md-12" style={{textAlign: "center"}}>
-          <select onChange={(e) => signals.categoryChanged({ category: e.target.value})}>
-            <option value="">All</option>
-            {this.props.categories.map(function (item, index) {
-              return <option value={item}>{item}</option>
-            })}
-          </select>
+          <Filter />
         </div>
 
         <div className="col-md-12">
           <h2 className="List-Header">Required Reading (Online resources)</h2>
           {this.props.displayedItems.map(function (item, index) {
-            return <article key={item.id} className="List-Item">
-              <header className="List-Item-Header">
-                <cite className="List-Item-Title"><a href={item.href}>{item.title}</a></cite>
-              </header>
-              <p className="List-Item-Description List-Item-Description--Short">{item.short_description}</p>
-            </article>
+            return <ListItem item={item} />
           })}
         </div>
         <span>&copy; '15 Eric Elliott &amp; friends</span>
