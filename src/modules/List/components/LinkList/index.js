@@ -1,26 +1,18 @@
 import React, { PropTypes } from 'react';
-import { Decorator as Cerebral, Link } from 'cerebral-view-react';
+import { Decorator as Cerebral} from 'cerebral-view-react';
 import displayedItems from '../../modules/List/computed/visibleItems.js';
-import ListItem from '../ListItem';
+import Link from '../Link';
 import Filter from '../Filter';
 import categories from '../../modules/List/computed/categories.js';
 import HtmlToReact from 'html-to-react';
 
 @Cerebral({
-  items: ['list', 'items'],
-  selectedCategory: ['list', 'selectedCategory'],
   displayedItems: displayedItems,
-  categories: categories
 })
-class Home extends React.Component {
-
-  static propTypes = {
-    color: PropTypes.string,
-    title: PropTypes.string
-  };
-
+class LinkList extends React.Component {
   render() {
     const signals = this.props.signals.list;
+    console.debug(this.props.displayedItems);
 
     return (
       <div>
@@ -41,15 +33,19 @@ class Home extends React.Component {
         </div>
 
         <div className="col-md-12">
-          <h2 className="List-Header">Required Reading (Online resources)</h2>
-          {this.props.displayedItems.map(function (item, index) {
-            return <ListItem item={item} />
-          })}
+          {Object.keys(this.props.displayedItems || {}).map(function (categoryName, idx, links) {
+            return <div>
+                <h2 className="List-Header">{categoryName}</h2>
+                {this.props.displayedItems[categoryName].map(function (link, idx) {
+                  return <Link item={link} />  
+                })}
+              </div>
+          }, this)}
         </div>
-        <span>&copy; '15 Eric Elliott &amp; friends</span>
+        <span>&copy; &#39;15 Eric Elliott &amp; friends</span>
       </div>
     );
   }
 }
 
-export default Home;
+export default LinkList;
